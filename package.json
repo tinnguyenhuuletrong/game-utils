@@ -1,0 +1,28 @@
+{
+  "name": "game-utils",
+  "version": "1.0.0",
+  "description": "Game Utils Frameworks in Javascript",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinnguyenhuuletrong/game-utils.git"
+  },
+  "author": "Tin Nguyen <tin.nguyen@joy-entertainment.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tinnguyenhuuletrong/game-utils/issues"
+  },
+  "homepage": "https://github.com/tinnguyenhuuletrong/game-utils#readme",
+  "dependencies": {
+    "node-uuid": "^1.4.7"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
+}
