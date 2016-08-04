@@ -6,12 +6,24 @@ var MathHelper = JMath.Math
 
 describe('+ JMath.Vector2', function() {
 	it('Vector2 constructor', function() {
-		var vec1 = new Vector2(0, 0)
-		var vec2 = new Vector2()
+		var vec1 = Vector2.Zero()
+		var b = Vector2.Up()
+		var vec2 = Vector2.Zero()
+
+		//Constant Constructor
+		expect(Vector2.Zero().toArray()).to.deep.equal([0, 0])
+		expect(Vector2.Up().toArray()).to.deep.equal([0, 1])
+		expect(Vector2.Right().toArray()).to.deep.equal([1, 0])
+		expect(Vector2.Left().toArray()).to.deep.equal([-1, 0])
+		expect(Vector2.Down().toArray()).to.deep.equal([0, -1])
+		expect(Vector2.One().toArray()).to.deep.equal([1, 1])
 
 		//Init From Direction and Length
-		var vec3 = (new Vector2(0,5)).setLength(2)
+		var vec3 = (new Vector2(0, 5)).setLength(2)
 		expect(vec3.toArray()).to.deep.equal([0, 2])
+
+		//fromAngle to Vector
+		expect(b.fromAngle(MathHelper.degToRad(90)).toArray()).to.deep.equal([0, 1])
 
 		//From Array
 		vec2.fromArray([-1, -100])
@@ -36,9 +48,9 @@ describe('+ JMath.Vector2', function() {
 	});
 
 	it('Vector2 properties', function() {
-		var a = new Vector2(0, 0)
-		var b = new Vector2(0, 1)
-		var c = new Vector2(1, 0)
+		var a = Vector2.Zero()
+		var b = Vector2.Up()
+		var c = Vector2.Right()
 
 		//Length
 		expect(b.length()).to.equal(1)
@@ -53,12 +65,17 @@ describe('+ JMath.Vector2', function() {
 		//angle in Radian
 		expect(b.angle()).to.be.closeTo(MathHelper.degToRad(90), 0.01);
 
+		//rotate around in Radian
+		var rotateRes = c.rotateAround(a, MathHelper.degToRad(90)).toArray()
+		expect(rotateRes[0]).to.closeTo(0, 0.005)
+		expect(rotateRes[1]).to.closeTo(1, 0.005)
+
 	});
 
 	it('Vector2 operators', function() {
-		var a = new Vector2(0, 0)
-		var b = new Vector2(0, 1)
-		var c = new Vector2(1, 0)
+		var a = Vector2.Zero()
+		var b = Vector2.Up()
+		var c = Vector2.Right()
 
 		//scalar
 		expect(b.clone().multiplyScalar(2).toArray()).to.deep.equal([0, 2])
@@ -77,13 +94,13 @@ describe('+ JMath.Vector2', function() {
 		//negate
 		tmp = b.clone()
 		tmp.negate()
-		expect(tmp.toArray()).to.deep.equal([-0, -1])		
+		expect(tmp.toArray()).to.deep.equal([-0, -1])
 	});
 
 	it('Vector2 lerp', function() {
-		var a = new Vector2(0, 1)
-		var b = new Vector2(1, 0)
-		var tmp = new Vector2()
+		var a = Vector2.Up()
+		var b = Vector2.Right()
+		var tmp = Vector2.Zero()
 
 		//lerp To
 		expect(tmp.lerp(b, 0.5).toArray()).to.deep.equal([0.5, 0])
@@ -91,5 +108,4 @@ describe('+ JMath.Vector2', function() {
 		//lerp Between
 		expect(tmp.lerpVectors(a, b, 0.5).toArray()).to.deep.equal([0.5, 0.5])
 	});
-
 });
