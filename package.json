@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/tinnguyenhuuletrong/game-utils#readme",
   "dependencies": {
-    "node-uuid": "^1.4.7"
+    "node-uuid": "^1.4.7",
+    "three": "^0.79.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
